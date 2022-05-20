@@ -1,11 +1,13 @@
 function changeTitle() {
     var index_title  = 'Webprogramming (LIX018P05) - Index';
     var second_title = 'Webprogramming (LIX018P05) - Second';
-    var elSecondTitle = document.getElementById('titleSecond');
-    elSecondTitle.textContent = second_title;
-    var elIndexTitle = document.getElementById("titleIndex");
-    elIndexTitle.textContent = index_title;
-};
+    if (window.location.href.endsWith('index.html')) {
+        var elIndexTitle = document.getElementById("title");
+        elIndexTitle.textContent = index_title;
+    } else {
+        var elSecondTitle = document.getElementById('title');
+        elSecondTitle.textContent = second_title;
+    }}
 
 function addArticle() {
     var elHeader = document.createElement('h1');
@@ -17,9 +19,9 @@ function addArticle() {
     var secondArticle = document.createElement('article');
     secondArticle.append(elHeader);
     secondArticle.append(elParagraph);
-    var position = document.getElementsByClassName('col-md-12');
-    position.appendChild(secondArticle);
-};
+    var position = document.getElementsByClassName('col-md-12').item(0);
+    position.append(secondArticle);
+}
 
 function links() {
     var start = document.getElementsByTagName('div');
@@ -57,7 +59,13 @@ function sideBar() {
     container.appendChild('newColumn');
 };
 
-document.addEventListener("DOMContentLoaded", [changeTitle(), addArticle(), links(), changeNavigationcolor(), sidebar()]
+document.addEventListener("DOMContentLoaded", function() {
+    changeTitle()
+    addArticle()
+    links()
+    changeNavigationcolor()
+    sidebar()
+})
 
 
 
